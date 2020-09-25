@@ -1,0 +1,59 @@
+<section class="hero is-info">
+	<div class="hero-body">
+		<h1 class="title">Crear Empleado</h1>
+	</div>
+</section>
+
+<section class="section">
+	<%= form_with model: @empleado, local: true, id: 'crear-sucursal-form' do |form| %>
+
+		<div class="columns">
+			<div class="column">
+				<div class="field">
+					<%= form.label :Nombres, 'Nombres', class:  'label' %>
+					<div class="control">
+						<%= form.text_field :nombres, class: 'input' %>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="field">
+					<%= form.label :apellidos, 'Apellidos', class:  'label' %>
+					<div class="control">
+						<%= form.text_field :apellidos, class: 'input' %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns">
+			<div class="column">
+				<div class="field">
+					<%= form.label :puesto, 'Puesto', class: 'label' %>
+					<div class="control">
+						<%= form.text_field :puesto, class: 'input' %>
+					</div>
+				</div>	
+			</div>
+
+			<div class="column">
+				<div class="field">
+					<%= form.label :sucursal, 'Sucursal', class:  'label' %>
+					<div class="control">
+						<% sucursales_valores = @sucursales.map { |sucursal| [sucursal.nombre, sucursal.id]} %>
+						<%= form.select(:sucursal_id, sucursales_valores, { include_blank: ' Seleccionar Sucursal' }, class: 'select is-fullwidth') %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field has-text-centered">
+            <div class="control">
+            	<%= link_to 'Cancelar', home_index_path, {class: 'button is-warning'} %>
+                <%= form.submit 'Crear', class: 'button is-primary' %>
+            </div>
+        </div>
+	<% end %>
+</section>
+
+<%= javascript_pack_tag 'empleado_validation' %>

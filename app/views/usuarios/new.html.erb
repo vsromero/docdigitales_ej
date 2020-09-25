@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">      
+
+        <div class="card-content" id="register-card-content">
+          <h1 class="title">Bienvenido!</h1>
+          <p class="subtitle is-size-6">Llena el formulario para crear tu cuenta.</p>
+          <%= render 'form', usuario: @usuario %>
+          <p class="has-text-danger" id="register-errors"></p>
+        </div>
+        
+        <footer class="card-footer">
+	        <%= link_to 'Acceder', login_path, {class: 'button is-info is-fullwidth'} %> 
+        </footer>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<%= javascript_pack_tag 'landing' %>
+<%= javascript_pack_tag 'validation' %>

@@ -1,0 +1,81 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <h1 class="title">Editar Sucursal</h1>
+  </div>
+</section>
+<div class="tabs is-centered">
+  <ul>
+    <li class="is-active" onclick="toggleTabs()" id="mostrar-detalles"><a>Detalles</a></li>
+    <li onclick="toggleTabs()" id="mostrar-empleados"><a>Empleados</a></li>
+  </ul>
+</div>
+
+<% if (notice) %>
+  <div class="notification is-info is-light">
+    <p class="has-text-centered"><%= notice %></p>          
+  </div>     
+<% end %>
+
+<section class="section" id="detalles-seccion">
+  <%= render 'form', sucursal: @sucursal %>
+</section>
+
+<section class="section is-hidden" id="empleados-seccion">
+  <% if @empleados.count > 0 %>
+  <div class="table-container">
+    <table class="table is-bordered is-striped is-fullwidth is-hoverable" style="margin-left: auto; margin-right: auto">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>RFC</th>
+          <th>Puesto</th>
+          <th>Sucursal</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @empleados.each do |empleado| %>
+        <tr>
+          <td><%= empleado.nombres %></td>
+          <td><%= empleado.apellidos %></td>
+          <td><%= empleado.RFC %></td>
+          <td><%= empleado.puesto %></td>
+          <td><%= empleado.sucursal.nombre %></td>
+          <td><%= link_to 'Editar', edit_empleado_path(empleado) %></td>
+          <td><%= link_to 'Eliminar', empleado, method: :delete, data: { confirm: 'Desea eliminar este empleado?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% else %>       
+
+  <div class="columns">
+    <div class="column is-one-third is-offset-one-third">
+      <article class="message is-warning">
+        <div class="message-body">
+          <h1 class="title is-5">Aun no has registrado empleados!</h1>
+        </div>
+      </article>
+    </div>          
+  </div>
+
+  <% end %>
+
+  <div class="container has-text-centered">
+    <%= link_to 'Registrar Empleado', new_empleado_path, {class: 'button is-info'} %>
+  </div>
+</section>
+
+<script type="text/javascript">
+  function toggleTabs() {
+    $('#detalles-seccion').toggleClass('is-hidden');
+    $('#empleados-seccion').toggleClass('is-hidden');
+    $('#mostrar-detalles').toggleClass('is-active');
+    $('#mostrar-empleados').toggleClass('is-active');
+  }
+</script>
+<%= javascript_pack_tag 'sucursal_validation' %>

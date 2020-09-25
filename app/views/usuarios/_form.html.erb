@@ -1,0 +1,79 @@
+<%= form_with model: usuario, local: true, id: 'register-form' do |form| %>
+<% if usuario.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(usuario.errors.count, "error") %> prohibited this usuario from being saved:
+  </h2>           
+
+  <ul>
+    <% usuario.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="columns">
+  <div class="column field py-0">
+    <%= form.label :nombres, 'Nombres', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :nombres, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="column field py-0">
+    <%= form.label :apellidos, 'Apellidos', class: 'label' %>
+    <div class="control">
+      <%= form.text_field :apellidos, class: 'input' %>
+    </div>
+  </div>
+</div>
+
+<div class="columns">     
+  <div class="column field py-0">
+    <%= form.label :email, 'Correo', class: 'label' %>
+    <div class="control">
+      <%= form.text_field :email, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="column field py-0">
+    <%= form.label :empresa, 'Empresa', class: 'label' %>
+    <div class="control">
+      <%= form.text_field :empresa, class: 'input' %>
+      <p class="help is-danger"></p>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column field">
+    <%= form.label :RFC, 'RFC', class: 'label' %>
+    <div class="control is-expanded">
+      <%= form.text_field :RFC, class: 'input is-fullwidth' %>
+    </div>
+  </div>          
+</div>
+
+<div class="columns">         
+  <div class="column field py-0">
+    <%= form.label :password, 'Contrasena', class: 'label' %>
+    <div class="control">
+      <%= form.password_field :password, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="column field py-0">
+    <%= form.label :password_confirmation, 'Confirmar contrasena', class: ' label' %> 
+    <div class="control"> 
+      <%= form.password_field :password_confirmation, class: 'input' %>
+    </div>  
+  </div>
+</div>
+
+<div class="field has-text-centered">
+  <div class="control">
+    <%= form.submit 'Crear', class: 'button is-primary' %>
+  </div>
+</div>
+<% end %>

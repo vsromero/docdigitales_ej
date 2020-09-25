@@ -1,0 +1,11 @@
+<section class="hero is-info">
+	<div class="hero-body">
+		<h1 class="title">Crear Empleado</h1>
+	</div>
+</section>
+
+<section class="section">
+	<%= render 'form', empleado: @empleado %>
+</section>
+
+<%= javascript_pack_tag 'empleado_validation' %>

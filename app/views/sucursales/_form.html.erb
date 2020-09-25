@@ -1,0 +1,68 @@
+<%= form_with model: @sucursal, local: true, id: 'crear-sucursal-form' do |form| %>
+<div class="columns">
+  <div class="column field">
+    <%= form.label :nombres, 'Nombre', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :nombre, class: 'input' %>
+    </div>
+  </div>
+  <div class="column field">
+    <%= form.label :calle, 'Calle', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :calle, class: 'input' %>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column field">
+    <%= form.label :colonia, 'Colonia', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :colonia, class: 'input' %>
+    </div>
+  </div>
+  <div class="column field">
+    <%= form.label :numero_exterior, 'Numero Exterior', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :numero_exterior, class: 'input' %>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column field">
+    <%= form.label :numero_interior, 'Numero Interor', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :numero_interior, class: 'input' %>
+    </div>
+  </div>
+  <div class="column field">
+    <%= form.label :codigo_postal, 'Codigo Postal', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :codigo_postal, class: 'input' %>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column field">
+    <%= form.label :ciudad, 'Ciudad', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :ciudad, class: 'input' %>
+    </div>
+  </div>
+  <div class="column field">
+    <%= form.label :pais, 'Pais', class:  'label' %>
+    <div class="control">
+      <%= form.text_field :pais, class: 'input' %>
+    </div>
+  </div>
+</div>
+
+<div class="field has-text-centered">
+  <div class="control">
+    <%= link_to 'Cancelar', home_index_path, {class: 'button is-warning'} %>
+    <%= form.submit 'Guardar', class: 'button is-primary' %>
+  </div>
+</div>
+<% end %>

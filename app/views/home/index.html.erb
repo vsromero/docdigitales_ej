@@ -1,0 +1,59 @@
+<section class="hero is-light is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Bienvenido <%= current_user.nombres %>!
+      </h1>
+      <%= link_to 'Registrar Sucursal', new_sucursal_path, {class: 'button is-info'} %>
+      <%= link_to 'Registrar Empleado', new_empleado_path, {class: 'button is-info'} %>
+
+      <h1 class="title is-5 pt-5">Tus Sucursales</h1>
+
+      <% if (notice) %>
+        <div class="notification is-info is-light">
+          <p class="has-text-centered"><%= notice %></p> 
+        </div>     
+      <% end %>
+
+      <% if @sucursales.count > 0 %>
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-fullwidth is-hoverable" style="margin-left: auto; margin-right: auto">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Empleados</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @sucursales.each do |sucursal| %>
+            <tr>
+              <td><%= sucursal.nombre %></td>
+              <td><%= sucursal.empleados.count %></td>
+              <td><%= link_to 'Editar', edit_sucursal_path(sucursal) %></td>
+              <td><%= link_to 'Eliminar', sucursal, method: :delete, data: { confirm: 'Desea eliminar esta sucursal?' } %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <% else %>       
+
+      <div class="columns">
+        <div class="column is-one-third is-offset-one-third">
+          <article class="message is-warning">
+            <div class="message-body">
+              <h1 class="title is-5">Aun no has registrado sucursales!</h1>
+            </div>
+          </article>
+        </div>          
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+ 
+</section>
