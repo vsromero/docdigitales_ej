@@ -18,7 +18,7 @@
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <h1 class="title has-text-light">docDigitales</h1>
+          <h1 class="title has-text-light"></h1>
         </a>    
   
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -41,5 +41,12 @@
     
     <%= yield %>
 
+    <script type="text/javascript">
+      $(".navbar-burger").click(function() {
+          $(".navbar-burger").toggleClass("is-active");
+          $(".navbar-menu").toggleClass("is-active");
+
+      });
+    </script>
   </body>
 </html>
