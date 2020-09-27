@@ -1,23 +1,20 @@
-<section class="hero is-light is-fullheight">
+<section class="hero is-light">
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
         Bienvenido <%= current_user.nombres %>!
       </h1>
-      <%= link_to 'Registrar Sucursal', new_sucursal_path, {class: 'button is-info'} %>
-      <%= link_to 'Registrar Empleado', new_empleado_path, {class: 'button is-info'} %>
-
-      <h1 class="title is-5 pt-5">Tus Sucursales</h1>
-
+      
       <% if (notice) %>
-        <div class="notification is-info is-light">
+        <div class="notification is-success is-light">
           <p class="has-text-centered"><%= notice %></p> 
         </div>     
       <% end %>
 
       <% if @sucursales.count > 0 %>
+      <h1 class="subtitle">Tus Sucursales</h1>
       <div class="table-container">
-        <table class="table is-bordered is-striped is-fullwidth is-hoverable" style="margin-left: auto; margin-right: auto">
+        <table class="table is-bordered is-striped is-fullwidth is-hoverable">
           <thead>
             <tr>
               <th>Nombre</th>
@@ -32,7 +29,7 @@
               <td><%= sucursal.nombre %></td>
               <td><%= sucursal.empleados.count %></td>
               <td><%= link_to 'Editar', edit_sucursal_path(sucursal) %></td>
-              <td><%= link_to 'Eliminar', sucursal, method: :delete, data: { confirm: 'Desea eliminar esta sucursal?' } %></td>
+              <td><%= link_to 'Eliminar', sucursal, method: :delete, data: { confirm: 'Desea eliminar esta sucursal?' }, class: 'has-text-danger' %></td>
             </tr>
             <% end %>
           </tbody>
@@ -52,6 +49,10 @@
       </div>
 
       <% end %>
+
+      <br>
+      <%= link_to 'Registrar Sucursal', new_sucursal_path, {class: 'button is-info'} %>
+      <%= link_to 'Registrar Empleado', new_empleado_path, {class: 'button is-info'} %>
 
     </div>
   </div>

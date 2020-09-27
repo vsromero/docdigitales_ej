@@ -11,7 +11,7 @@
 </div>
 
 <% if (notice) %>
-  <div class="notification is-info is-light">
+  <div class="notification is-success is-light">
     <p class="has-text-centered"><%= notice %></p>          
   </div>     
 <% end %>
@@ -23,7 +23,7 @@
 <section class="section is-hidden" id="empleados-seccion">
   <% if @empleados.count > 0 %>
   <div class="table-container">
-    <table class="table is-bordered is-striped is-fullwidth is-hoverable" style="margin-left: auto; margin-right: auto">
+    <table class="table is-bordered is-striped is-fullwidth is-hoverable">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -44,7 +44,7 @@
           <td><%= empleado.puesto %></td>
           <td><%= empleado.sucursal.nombre %></td>
           <td><%= link_to 'Editar', edit_empleado_path(empleado) %></td>
-          <td><%= link_to 'Eliminar', empleado, method: :delete, data: { confirm: 'Desea eliminar este empleado?' } %></td>
+          <td><%= link_to 'Eliminar', empleado, method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'has-text-danger'%></td>
         </tr>
         <% end %>
       </tbody>

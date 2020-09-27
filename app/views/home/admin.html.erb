@@ -1,0 +1,131 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <h1 class="title">Admin</h1>
+  </div>
+</section>
+
+<section class="section">
+	<div class="tabs is-centered">
+	  <ul>
+	    <li class="is-active" data-tab="usuarios"><a>Usuarios</a></li>
+	    <li data-tab="sucursales"><a>Sucursales</a></li>
+	    <li data-tab="empleados"><a>Empleados</a></li>
+	  </ul>
+	</div>	
+</section>
+
+<section class="section" id="tab-content">
+	<div class="table-container" id="usuarios">
+    <table class="table is-bordered is-striped is-fullwidth is-hoverable">
+      <thead>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Rfc</th>
+          <th>Empresa</th>
+          <th>ID</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @usuarios.each do |usuario| %>
+        <tr>
+          <td><%= usuario.nombres %></td>
+          <td><%= usuario.apellidos %></td>
+          <td><%= usuario.email %></td>
+          <td><%= usuario.RFC %></td>
+          <td><%= usuario.empresa %></td>
+          <td><%= usuario.id %></td>
+          <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+          <td><%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Desea eliminar este usuario?' }, class: 'has-text-danger'%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  	</div>
+
+  	<div class="table-container is-hidden" id="sucursales">
+    <table class="table is-bordered is-striped is-fullwidth is-hoverable">
+      <thead>
+        <tr>
+      		<th>Nombre</th>
+      		<th>Calle</th>
+      		<th>Colonia</th>
+      		<th>Numero exterior</th>
+      		<th>Numero interior</th>
+      		<th>Codigo postal</th>
+      		<th>Ciudad</th>
+      		<th>Pais</th>
+      		<th>Usuario</th>
+      		<th>ID</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @sucursales.each do |sucursal| %>
+        <tr>
+        	<td><%= sucursal.nombre %></td>
+        	<td><%= sucursal.calle %></td>
+        	<td><%= sucursal.colonia %></td>
+        	<td><%= sucursal.numero_exterior %></td>
+        	<td><%= sucursal.numero_interior %></td>
+        	<td><%= sucursal.codigo_postal %></td>
+        	<td><%= sucursal.ciudad %></td>
+        	<td><%= sucursal.pais %></td>
+        	<td><%= sucursal.usuario_id %></td>
+        	<td><%= sucursal.id %></td>
+        	<td><%= link_to 'Edit', edit_sucursal_path(sucursal) %></td>
+        	<td><%= link_to 'Destroy', sucursal, method: :delete, data: { confirm: 'esea eliminar esta sucursal?' } %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  	</div>
+
+	<div class="table-container is-hidden" id="empleados">
+    <table class="table is-bordered is-striped is-fullwidth is-hoverable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>RFC</th>
+          <th>Puesto</th>
+          <th>Sucursal</th>
+          <th>ID</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @empleados.each do |empleado| %>
+        <tr>
+          <td><%= empleado.nombres %></td>
+          <td><%= empleado.apellidos %></td>
+          <td><%= empleado.RFC %></td>
+          <td><%= empleado.puesto %></td>
+          <td><%= empleado.sucursal.nombre %></td>
+          <td><%= empleado.id %></td>
+          <td><%= link_to 'Editar', edit_empleado_path(empleado) %></td>
+          <td><%= link_to 'Eliminar', empleado, method: :delete, data: { confirm: 'Desea eliminar este empleado?' }, class: 'has-text-danger'%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  	</div>
+</section>
+
+<script type="text/javascript">
+	var tabs = $('.tabs li');
+	tabs.on('click', function() {
+		var tab = $(this).data('tab');
+
+		tabs.removeClass('is-active');
+		$(this).addClass('is-active');
+
+		$('#tab-content div').addClass('is-hidden');
+		$('#'+tab).removeClass('is-hidden');
+	})
+</script>

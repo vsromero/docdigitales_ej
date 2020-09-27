@@ -75,6 +75,16 @@ class SucursalesController < ApplicationController
     end
   end
 
+  def checkNombreSucursal
+    @nombre = params[:sucursal][:nombre]
+    @sucursal = Sucursal.where(nombre: @nombre, usuario: current_user) 
+    respond_to do |format|
+      # Regresa si usuario o empleado existe
+      # Si usuario Y empleado son nil regresa true
+      format.json { render :json => @sucursal.blank? }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sucursal

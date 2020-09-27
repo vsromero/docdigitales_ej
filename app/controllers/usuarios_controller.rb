@@ -14,6 +14,9 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
+    if logged_in?
+      redirect_to :controller => 'home'
+    end
     @usuario = Usuario.new
   end
 
@@ -66,16 +69,22 @@ class UsuariosController < ApplicationController
   end
 
   def checkEmail
-    @usuario = Usuario.find_by email: params[:email]
+    @email = params[:usuario]['email'] # Saca email del objeto mandado
+    @usuario = Usuario.find_by email: @email
     respond_to do |format|
-      format.json {render :json => @usuario}
+      # Si usuario es blank regresa true
+      format.json { render :json => @usuario.blank? }
     end
   end
 
   def checkRFC
-    @usuario = Usuario.find_by RFC: params[:RFC]
+    @RFC = params[params.keys()[0]]['RFC'] # Saca RFC del objeto mandado
+    @usuario = Usuario.find_by RFC: @RFC
+    @empleado = Empleado.find_by RFC: @RFC
     respond_to do |format|
-      format.json {render :json => @usuario}
+      # Regresa si usuario o empleado existe
+      # Si usuario Y empleado son nil regresa true
+      format.json { render :json => @usuario.blank? && @empleado.blank? }
     end
   end
 

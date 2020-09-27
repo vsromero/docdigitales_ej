@@ -1,14 +1,16 @@
 class SessionsController < ApplicationController
   def new
-    @errores
+    if logged_in?
+      redirect_to :controller => 'home'
+    end
   end
 
   def create
-  	user = Usuario.find_by_email(params[:email])
+    @user = Usuario.find_by(email: params[:email])
     respond_to do |format|    
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        format.html { redirect_to :controller => 'home' }
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        format.html { redirect_to home_index_path }
       else
         format.js
         format.html { render :new }
