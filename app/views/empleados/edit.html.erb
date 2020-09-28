@@ -41,7 +41,7 @@
 					<%= form.label :sucursal, 'Sucursal', class:  'label' %>
 					<div class="select is-fullwidth">
 						<% sucursales_valores = @sucursales.map { |sucursal| [sucursal.nombre, sucursal.id]} %>
-						<%= form.select(:sucursal_id, sucursales_valores) %>
+						<%= form.select :sucursal_id, options_for_select(sucursales_valores) %>
 					</div>
 				</div>
 			</div>
