@@ -1,6 +1,6 @@
 jQuery.extend(jQuery.validator.messages, {
     required: 'Este campo es requerido',
-    equalTo: 'Las contrasenas no coinciden',
+    equalTo: 'Las contraseñas no coinciden',
     email: 'Correo invalido',
 });
 
